@@ -1,0 +1,23 @@
+I used Pytest to test the API endpoints that are documented in SwaggerUI. 
+The API runs with SwaggerUI documentation at http://localhost:5000, which 
+I verified was accessible. I validated all responses against the schema 
+definitions that correspond to the Swagger documentation.
+
+BUGS FOUND DURING TESTING:
+
+1. BUG in schemas.py:
+   - Issue: "name" property was defined as "integer" instead of "string"
+   - Fix: Changed type from "integer" to "string"
+   - Impact: Schema validation would fail for all pet names
+
+2. BUG in app.py (already fixed in provided code):
+   - Issue: PATCH order endpoint now accepts 'available' status
+   - The title mentioned this was fixed: "fix issue with patch order not accepting available status"
+
+3. OBSERVATION:
+   - The API allows updating order status to 'available', which makes the pet available again
+   - This is working as intended after the fix
+
+4. POTENTIAL ISSUE:
+   - No validation for duplicate pet IDs when creating new pets
+   - API returns 409 Conflict if pet ID already exists (this is good)
